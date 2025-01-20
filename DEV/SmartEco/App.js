@@ -16,7 +16,7 @@ function HomeScreen({ navigation }) {
 
   const handleSubmit = () => {
     // Ici, vous pouvez ajouter la logique pour la connexion ou l'inscription
-    console.log(isLogin ? 'Connexion' : 'Inscription', ' - Username:', username, 'Password:', password);
+    console.log(isLogin ? 'Connexion' : 'Inscription test', ' - Username:', username, 'Password:', password);
     // Navigation vers TestScreen après la soumission
     navigation.navigate('TestScreen');
   };
