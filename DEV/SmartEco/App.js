@@ -1,8 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import TestScreen from './TestScreen'; // Assurez-vous que le chemin est correct
 
-export default function App() {
+// Création du Stack Navigator
+const Stack = createStackNavigator();
+
+// Votre écran principal (HomeScreen)
+function HomeScreen({ navigation }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isLogin, setIsLogin] = useState(true); // true pour connexion, false pour inscription
@@ -10,6 +17,8 @@ export default function App() {
   const handleSubmit = () => {
     // Ici, vous pouvez ajouter la logique pour la connexion ou l'inscription
     console.log(isLogin ? 'Connexion' : 'Inscription', ' - Username:', username, 'Password:', password);
+    // Navigation vers TestScreen après la soumission
+    navigation.navigate('TestScreen');
   };
 
   const toggleFormType = () => {
@@ -49,7 +58,20 @@ export default function App() {
   );
 }
 
+// Fonction principale de l'application
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="TestScreen" component={TestScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
 const styles = StyleSheet.create({
+  // Vos styles ici restent inchangés
   container: {
     flex: 1,
     backgroundColor: '#E8F5E9',
