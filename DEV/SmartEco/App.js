@@ -5,7 +5,7 @@ import { StyleSheet, Text, View } from 'react-native';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Ca marche bien </Text>
+      <Text>Ca marche bien !</Text>
       <StatusBar style="auto" />
     </View>
   );
