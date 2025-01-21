@@ -16,7 +16,7 @@ if not bucket_name or not file_key:
 app = Flask(__name__)
 
 SWAGGER_URL = '/swagger'
-API_URL = '/static/swagger.yaml'
+API_URL = 'swagger.yaml'
 swaggerui_blueprint = get_swaggerui_blueprint(SWAGGER_URL, API_URL)
 app.register_blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
 
