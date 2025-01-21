@@ -14,8 +14,5 @@ RUN npm install
 # Copie des fichiers du projet
 COPY . .
 
-# Expose le port utilisé par l'application
-EXPOSE 3000
-
 # Commande de démarrage
 CMD ["npm", "start"]
