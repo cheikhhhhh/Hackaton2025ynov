@@ -1,0 +1,31 @@
+name: Build and Push to ECR
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  push_to_ecr:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Configure AWS Credentials (OIDC)
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        role-to-assume: arn:aws:iam::465130003821:role/GitHubActionsPushToECRRole
+        aws-region: eu-west-3
+
+    - name: Login to Amazon ECR
+      run: |
+        aws ecr get-login-password --region eu-west-3 | docker login --username AWS --password-stdin 465130003821.dkr.ecr.eu-west-3.amazonaws.com
+
+    - name: Build, Tag, and Push
+      run: |
+        docker build -t smarteco-api:latest ./DATA/API
+        docker tag smarteco-api:latest 465130003821.dkr.ecr.eu-west-3.amazonaws.com/smarteco-api:latest
+        docker push 465130003821.dkr.ecr.eu-west-3.amazonaws.com/smarteco-api:latest
