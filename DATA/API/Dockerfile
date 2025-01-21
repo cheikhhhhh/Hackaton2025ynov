@@ -1,20 +1,17 @@
-# Utiliser une image de base Python
+# Utilise l'image de base Python 3.9 en version slim pour réduire la taille de l'image
 FROM python:3.9-slim
 
-# Définir le répertoire de travail dans le conteneur
+# Définit le répertoire de travail dans le conteneur
 WORKDIR /app
 
-# Copier les fichiers requirements pour installer les dépendances
-COPY requirements.txt requirements.txt
-
-# Installer les dépendances nécessaires
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Copier tout le contenu de l'application dans le répertoire de travail
+# Copie tous les fichiers du répertoire actuel vers le répertoire de travail dans le conteneur
 COPY . .
 
-# Exposer le port utilisé par Flask (par défaut : 5000)
-EXPOSE 5000
+# Installe les dépendances listées dans le fichier requirements.txt
+RUN pip install -r requirements.txt
 
-# Commande pour lancer l'application Flask
+# Expose le port 8082 pour les connexions entrantes
+EXPOSE 8082
+
+# Définit la commande par défaut pour démarrer l'application
 CMD ["python", "main.py"]
