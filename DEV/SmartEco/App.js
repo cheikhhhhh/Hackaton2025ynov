@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity } fr
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import TestScreen from './TestScreen'; // Assurez-vous que le chemin est correct
+import ProfilScreen from './Profil'; // Assurez-vous que le chemin d'importation est correct
 
 // Création du Stack Navigator
 const Stack = createStackNavigator();
@@ -65,6 +66,7 @@ export default function App() {
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="TestScreen" component={TestScreen} />
+        <Stack.Screen name="Profil" component={ProfilScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

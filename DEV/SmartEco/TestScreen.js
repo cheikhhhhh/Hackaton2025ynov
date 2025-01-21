@@ -1,7 +1,8 @@
+// TestScreen.js
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 
-function TestScreen() {
+function TestScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.content}>
@@ -13,6 +14,15 @@ function TestScreen() {
         source={require('./Image/Logo_Smartco.png')} 
         style={styles.image}
       />
+      <TouchableOpacity 
+        style={styles.profileButton}
+        onPress={() => navigation.navigate('Profil')}
+      >
+        <Image 
+          source={require('./Image/image_Profil.jpg')} // Assurez-vous que le chemin est correct
+          style={styles.profileImage}
+        />
+      </TouchableOpacity>
     </View>
   );
 }
@@ -20,14 +30,14 @@ function TestScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#E8F5E9', // Même fond vert
-    flexDirection: 'row', // Pour positionner l'image à droite
+    backgroundColor: '#E8F5E9',
+    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between', // Pour espacer le contenu et l'image
+    justifyContent: 'space-between',
     padding: 20,
   },
   content: {
-    flex: 1, // Prend tout l'espace restant à gauche
+    flex: 1,
     justifyContent: 'center',
   },
   welcomeText: {
@@ -43,9 +53,19 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   image: {
-    width: 50, // Ajustez selon la taille de votre image
+    width: 50,
     height: 50,
-    marginLeft: 20, // Pour ajouter un peu d'espace entre le texte et l'image
+    marginLeft: 20,
+  },
+  profileButton: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    overflow: 'hidden',
+  },
+  profileImage: {
+    width: '100%',
+    height: '100%',
   },
 });
 
