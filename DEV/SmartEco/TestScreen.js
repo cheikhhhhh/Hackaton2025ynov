@@ -9,6 +9,14 @@ function TestScreen({ navigation }) {
         <Text style={styles.welcomeText}>Bienvenue</Text>
         <Text style={styles.carbonText}>Voici votre taux de carbone</Text>
         <Text style={styles.questionText}>Souhaitez-vous répondre à un questionnaire ?</Text>
+
+        {/* Ajouter un bouton pour aller au RankingScreen */}
+      <TouchableOpacity 
+        style={styles.rankingButton} 
+        onPress={() => navigation.navigate('Rank')}
+      >
+        <Text style={styles.rankingButtonText}>Voir le Classement</Text>
+      </TouchableOpacity>
       </View>
       <Image 
         source={require('./Image/Logo_Smartco.png')} 
@@ -28,6 +36,17 @@ function TestScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+  rankingButton: {
+    marginTop: 20,
+    padding: 10,
+    backgroundColor: '#4CAF50',
+    borderRadius: 5,
+    alignItems: 'center',
+  },
+  rankingButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
+  },
   container: {
     flex: 1,
     backgroundColor: '#E8F5E9',

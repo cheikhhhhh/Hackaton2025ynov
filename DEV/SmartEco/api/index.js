@@ -1,4 +1,5 @@
-const express = require('express');
+//const express = require('express');
+import express from 'express';
 const mongoose = require('mongoose');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./config/Swagger');

@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import TestScreen from './TestScreen'; // Assurez-vous que le chemin est correct
 import ProfilScreen from './Profil'; // Assurez-vous que le chemin d'importation est correct
+import RankingScreen from './Rank';
 
 // Création du Stack Navigator
 const Stack = createStackNavigator();
@@ -67,6 +68,7 @@ export default function App() {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="TestScreen" component={TestScreen} />
         <Stack.Screen name="Profil" component={ProfilScreen} />
+        <Stack.Screen name="Rank" component={RankingScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

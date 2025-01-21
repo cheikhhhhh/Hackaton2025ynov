@@ -10,7 +10,8 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
+   "type": "module",
+    "@aws-sdk/client-secrets-manager": "^3.731.1",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "compression": "^1.7.4",
@@ -21,7 +22,8 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.9.5",
     "nodemon": "^3.0.1",
+    "pg": "^8.13.1",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1"
-  }
+  
 }
