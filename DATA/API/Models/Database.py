@@ -1,4 +1,5 @@
 import boto3
+import psycopg2
 from botocore.exceptions import ClientError
 
 class Database:
@@ -24,9 +25,41 @@ class Database:
             # https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html
             print("except")
             raise e
-        
-        secret = get_secret_value_response['SecretString']
+
+        # get username
+        secret_username = get_secret_value_response['SecretString'].split(",")[0].split(":")[1].replace('"', '')
+        secret_password = get_secret_value_response['SecretString'].split(",")[1].split(":")[1].replace('"', '').replace("}", '')
+
+        # Connect to the PostgreSQL database
+        try:
+            self.connection = psycopg2.connect(
+                database="postgres",
+                user=secret_username,
+                host='database-smarteco.cluster-ro-ctm0qxufzcly.eu-west-3.rds.amazonaws.com',
+                password=secret_password,
+                port=5432
+            )
+            self.connection.autocommit = True
+        except psycopg2.Error as e:
+            print("Error connecting to the database.")
+            raise e
 
     def recuperer_list_utilisateur_example(self):
-        print("recuperer_list_utilisateur_example")
-        return self.secret
+        """
+        Retrieves a list of users from the database.
+        """
+        try:
+            with self.connection.cursor() as cursor:
+                cursor.execute("SELECT id, nom, email FROM utilisateurs;")
+                utilisateurs = cursor.fetchall()
+                return utilisateurs
+        except psycopg2.Error as e:
+            print("Error retrieving user list.")
+            raise e
+
+    def close(self):
+        """
+        Closes the database connection.
+        """
+        if self.connection:
+            self.connection.close()
