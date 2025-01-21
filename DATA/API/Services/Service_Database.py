@@ -8,6 +8,7 @@ class Service_Database:
         try:
             db = Database()
             data = db.recuperer_list_utilisateur_example()
+            db.close()
 
         except Exception as e:
             db.close()
