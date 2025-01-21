@@ -1,0 +1,5 @@
+- to build the image, run 'sudo docker build ./ -t image-name';
+- to run the image run 'sudo docker run -e MONGO_URI="mongodb+srv://amadouelcapotoure:Z73oICrr7TAzBz5W@cluster0.bgpse7b.mongodb.net/the_nest_db" -e PORT=5000 -dp 127.0.0.1:5000:5000 api_the_nest';
+- the env variable are :
+  - MONGO_URI="mongodb+srv://amadouelcapotoure:Z73oICrr7TAzBz5W@cluster0.bgpse7b.mongodb.net/the_nest_db"
+  - PORT=5000
