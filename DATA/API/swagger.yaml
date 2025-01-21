@@ -1,0 +1,44 @@
+openapi: 3.0.0
+info:
+  title: SmartEco API
+  version: "1.0.0"
+servers:
+  - url: https://qptdsruxe8.eu-west-3.awsapprunner.com
+paths:
+  /login:
+    post:
+      summary: Connexion utilisateur
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: "admin"
+                password:
+                  type: string
+                  example: "1234"
+      responses:
+        200:
+          description: Connexion réussie
+        401:
+          description: Identifiants invalides
+  /predict:
+    post:
+      summary: Faire une prédiction
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                input_data:
+                  type: object
+                  example: { "field1": 10, "field2": 20 }
+      responses:
+        200:
+          description: Prédiction réussie
