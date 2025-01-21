@@ -6,6 +6,9 @@ on:
 jobs:
   push_to_ecr:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
 
     steps:
     - name: Checkout
@@ -23,6 +26,6 @@ jobs:
 
     - name: Build, Tag, and Push
       run: |
-        docker build -t smarteco_react_app:latest ./DEV/SmartEco
-        docker tag smarteco_react_app:latest 465130003821.dkr.ecr.eu-west-3.amazonaws.com/smarteco_react_app:latest
-        docker push 465130003821.dkr.ecr.eu-west-3.amazonaws.com/smarteco_react_app:latest
+        docker build -t smarteco-react-app:latest ./DEV/SmartEco
+        docker tag smarteco-react-app:latest 465130003821.dkr.ecr.eu-west-3.amazonaws.com/smarteco-react-app:latest
+        docker push 465130003821.dkr.ecr.eu-west-3.amazonaws.com/smarteco-react-app:latest
