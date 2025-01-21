@@ -1,4 +1,3 @@
-import config from './config';
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity } from 'react-native';
@@ -18,41 +17,11 @@ function HomeScreen({ navigation }) {
   const [password, setPassword] = useState('');
   const [isLogin, setIsLogin] = useState(true); // true pour connexion, false pour inscription
 
-  /* const handleSubmit = () => {
+  const handleSubmit = () => {
     // Ici, vous pouvez ajouter la logique pour la connexion ou l'inscription
     console.log(isLogin ? 'Connexion' : 'Inscription test', ' - Username:', username, 'Password:', password);
     // Navigation vers TestScreen après la soumission
     navigation.navigate('TestScreen');
-  };*/
-  
-  const handleSubmit = async () => {
-    if (!username || !password) {
-      console.log("Veuillez remplir tous les champs.");
-      return;
-    }
-    try {
-      const endpoint = isLogin ? '/login' : '/register';
-      const response = await fetch(`${config.apiBaseUrl}${endpoint}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Erreur lors de la requête API');
-      }
-
-      const data = await response.json();
-      console.log('Réponse de l’API Flask :', data);
-
-      // Naviguez vers TestScreen si la soumission est réussie
-      navigation.navigate('TestScreen');
-    } catch (error) {
-      console.error('Erreur lors de la soumission :', error);
-      alert('Une erreur est survenue lors de la connexion. Veuillez vérifier vos identifiants.');
-    }
   };
 
   const toggleFormType = () => {

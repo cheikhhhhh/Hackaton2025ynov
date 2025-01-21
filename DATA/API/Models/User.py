@@ -4,7 +4,7 @@ from werkzeug.security import generate_password_hash
 db = SQLAlchemy()
 
 class User(db.Model):
-    __tablename__ = 'users'
+    __tablename__ = 'utilisateurs'
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)

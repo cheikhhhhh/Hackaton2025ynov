@@ -1,7 +1,4 @@
-import os
 import pandas as pd
-import boto3
-from io import StringIO
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
@@ -9,23 +6,9 @@ from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 
 class CarbonEmissionModel:
-    def __init__(self, bucket_name, file_key, region_name='eu-west-3'):
-
-        bucket_name = os.getenv('BUCKET_NAME')
-        file_key = os.getenv('FILE_KEY')
-
-        if not bucket_name or not file_key:
-            raise ValueError("Les variables d'environnement BUCKET_NAME et FILE_KEY doivent être définies")
-        
-        # Connexion à S3 via Instance Role
-        s3 = boto3.client('s3', region_name=region_name)
-
-        # Téléchargement des données depuis S3
-        response = s3.get_object(Bucket=bucket_name, Key=file_key)
-        data = pd.read_csv(StringIO(response['Body'].read().decode('utf-8')))
-
-        # Charger les données en local
-        ## data = pd.read_csv('./Carbon_Emission_Cleaned.csv')
+    def __init__(self):
+        # Charger les données
+        data = pd.read_csv('./Carbon_Emission_Cleaned.csv')
 
         # Définir les colonnes pertinentes
         features = [

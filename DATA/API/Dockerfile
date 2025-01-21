@@ -1,28 +1,20 @@
-# Utiliser une image Python officielle basée sur Debian Slim
+# Utiliser une image de base Python
 FROM python:3.9-slim
 
-# Définir le répertoire de travail
+# Définir le répertoire de travail dans le conteneur
 WORKDIR /app
 
-# Installer les dépendances système nécessaires
-RUN apt-get update && apt-get install -y \
-    libpq-dev \
-    gcc \
-    build-essential \
-    libatlas-base-dev \
-    libfreetype6-dev \
-    libpng-dev \
-    && rm -rf /var/lib/apt/lists/*
+# Copier les fichiers requirements pour installer les dépendances
+COPY requirements.txt requirements.txt
 
-# Copier les fichiers de l'application dans le conteneur
-COPY requirements.txt ./
-COPY . .
-
-# Installer les dépendances Python
+# Installer les dépendances nécessaires
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Exposer le port utilisé par Flask
+# Copier tout le contenu de l'application dans le répertoire de travail
+COPY . .
+
+# Exposer le port utilisé par Flask (par défaut : 5000)
 EXPOSE 5000
 
-# Commande pour démarrer l'application
-CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:5000", "main:app"]
+# Commande pour lancer l'application Flask
+CMD ["python", "main.py"]
