@@ -30,14 +30,6 @@ function ProfilScreen({ navigation }) {
         <Text style={styles.homeButtonText}>Home</Text>
       </TouchableOpacity>
 
-      {/* Ajouter un bouton pour aller au RankingScreen */}
-      <TouchableOpacity 
-        style={styles.rankingButton} 
-        onPress={() => navigation.navigate('RankingScreen')}
-      >
-        <Text style={styles.rankingButtonText}>Voir le Classement</Text>
-      </TouchableOpacity>
-
       {/* Photo de profil au milieu */}
       <View style={styles.profilePhotoContainer}>
         <Image source={profilePhoto} style={styles.profilePhoto} />
@@ -66,17 +58,7 @@ function ProfilScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  rankingButton: {
-    marginTop: 20,
-    padding: 10,
-    backgroundColor: '#4CAF50',
-    borderRadius: 5,
-    alignItems: 'center',
-  },
-  rankingButtonText: {
-    color: 'white',
-    fontWeight: 'bold',
-  },
+
   container: {
     flex: 1,
     backgroundColor: '#E8F5E9',

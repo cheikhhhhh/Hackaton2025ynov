@@ -25,7 +25,6 @@ function RankingScreen({ navigation }) {
   return (
     <View style={styles.container}>
       {/* Bouton Home en haut à gauche */}
-
       <View style={styles.rankingContainer}>
         <Text style={styles.title}>Classement Empreinte Carbone</Text>
         <FlatList
@@ -35,11 +34,38 @@ function RankingScreen({ navigation }) {
           style={styles.list}
         />
       </View>
+      <TouchableOpacity 
+        style={styles.QRcodeButton} 
+        onPress={() => navigation.navigate('QRcode')}
+      >
+        <Text style={styles.QRcodeButtonText}>Voir le QRcode</Text>
+      </TouchableOpacity>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+    QRcodeButton: {
+        marginTop: 20,
+        padding: 10,
+        backgroundColor: '#4CAF50',
+        borderRadius: 5,
+        alignItems: 'center',
+      },
+    QRcodeButtonText: {
+        color: 'white',
+        fontWeight: 'bold',},
+    rankingButton: {
+    marginTop: 20,
+    padding: 10,
+    backgroundColor: '#4CAF50',
+    borderRadius: 5,
+    alignItems: 'center',
+  },
+  rankingButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
+},
   container: {
     flex: 1,
     backgroundColor: '#E8F5E9',
