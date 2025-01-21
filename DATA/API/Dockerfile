@@ -1,17 +1,17 @@
-# Utilise l'image de base Python 3.9 en version slim pour réduire la taille de l'image
+# Utiliser une image Python légère
 FROM python:3.9-slim
 
-# Définit le répertoire de travail dans le conteneur
+# Définir le répertoire de travail
 WORKDIR /app
 
-# Copie tous les fichiers du répertoire actuel vers le répertoire de travail dans le conteneur
+# Copier les fichiers nécessaires
 COPY . .
 
-# Installe les dépendances listées dans le fichier requirements.txt
-RUN pip install -r requirements.txt
+# Installer les dépendances
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Expose le port 8082 pour les connexions entrantes
-EXPOSE 8082
+# Exposer le port Flask
+EXPOSE 5000
 
-# Définit la commande par défaut pour démarrer l'application
-CMD ["python", "main.py"]
+# Utiliser Gunicorn comme serveur WSGI
+CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:5000", "main:app"]
