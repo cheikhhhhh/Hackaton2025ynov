@@ -1,0 +1,18 @@
+# Utilisation de node version 18 alpine
+FROM node:18-alpine 
+
+# Selection du repertoire de travail
+WORKDIR /app
+
+# Copie des fichiers package.json et package-lock.json
+COPY ./package.json ./
+COPY ./package-lock.json ./
+
+# Installation des dépendances
+RUN npm install
+
+# Copie des fichiers du projet
+COPY . .
+
+# Commande de démarrage
+CMD ["npm", "start"]
