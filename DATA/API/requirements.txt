@@ -2,4 +2,4 @@ flask
 boto3
 pandas
 scikit-learn
-psycopg2
+psycopg2-binary
